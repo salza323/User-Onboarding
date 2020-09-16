@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 
 
 const initialFormValues = {
-    name: '',
-    email: '', 
-    password: '',
-    terms: false,
+    userName: '',
+    userEmail: '', 
+    userPassword: '',
+    termsOfService: false,
 }
 
 function UserForm() {
@@ -20,6 +20,7 @@ function UserForm() {
     }
 
     const submit = evt => {
+        evt.preventDefault()
         const newUser = {
             userName: formValue.userName.trim(),
             userEmail: formValue.userEmail.trim(),
@@ -54,8 +55,8 @@ function UserForm() {
                 <label> Accept Terms of Service
                     <input 
                         type = 'checkbox'
-                        name = 'terms of service'
-                        checked = {initialFormValues.terms}
+                        name = 'termsOfService'
+                        checked = {initialFormValues.termsOfService}
                         onChange = {onChange}
                     />
                 </label>
