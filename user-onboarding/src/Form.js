@@ -15,6 +15,7 @@ function UserForm( props ) {
 
 
     const onSubmit = evt => {
+        // console.log('onSubmit')
         evt.preventDefault()
         submit()
     }
@@ -81,10 +82,10 @@ function UserForm( props ) {
                         onChange = {onChange}
                     />
                 </label>
+            <button disabled ={disabled}>Submit</button>
             </form>    
 
-            <button disabled ={disabled}>Submit</button>
-            
+
         </div>
     )
 

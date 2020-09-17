@@ -6,7 +6,7 @@ import * as yup from 'yup'
 
 import UserForm from './Form'
 import schema from './validation/FromSchema'
-// import { useState, useEffect } from 'react';
+
 
 
 const initialFormValues = {
@@ -31,19 +31,23 @@ function App() {
   const [disabled, setDisabled] = useState(initialDisabled) 
 
   const postNewUser = newUser => {
+    // console.log('postNewUser')
     axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
-        setUser([...user, res.detail])
+        // console.log({res})
+        setUser([...user, res.data])
+        console.log(res.data)
       })
       .catch(err => {
-        debugger
         console.log(err)
       })
       .finally(() => {
+        // console.log('finally')
         setFormValue(initialFormValues)
+        // debugger
       })   
   }    
-  
+
   const validate = (name, value) => {
     yup.reach(schema, name)
     .validate(value)
@@ -70,12 +74,14 @@ function App() {
   }
 
   const formSubmit = () => {
+    // console.log('formSubmit')
     const newUser = {
       userName: formValue.userName.trim(),
-      email: formValue.email.trim(),
-      password: formValue.password.trim(),
+      userEmail: formValue.userEmail.trim(),
+      userPassword: formValue.userPassword.trim(),
       termsOfService: formValue.termsOfService,
     }
+    // console.log(newUser)
     postNewUser(newUser)
   }
 
@@ -101,6 +107,18 @@ function App() {
               disabled={disabled}
               errors={formErrors}
         />
+        {
+          user.map((user, idx) => {
+            return (
+              <div key ={idx} className='user'>
+              {user.userName}
+              {user.userEmail}
+              {user.userPassword}
+              {user.termsOfService}
+              </div>
+            )
+            })       
+          }
         
       </header>
     </div>

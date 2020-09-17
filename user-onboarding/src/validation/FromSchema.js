@@ -8,5 +8,5 @@ export default yup.object().shape({
         .required('Email is required'),
     userPassword: yup.string()
         .required('Password is required'),
-    termsOfService: yup.boolean(),
+    termsOfService: yup.boolean(true),
 })
