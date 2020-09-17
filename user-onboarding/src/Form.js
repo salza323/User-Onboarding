@@ -1,14 +1,27 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 
 
 
-function UserForm() {
+function UserForm( props ) {
+
+    const {
+        values, 
+        change, 
+        submit, 
+        disabled, 
+        errors, 
+    } = props
 
 
-    const change = (name, value) => {
-        setFormValue({...formValue, [name]: value})
+    const onSubmit = evt => {
+        evt.preventDefault()
+        submit()
     }
+
+    // const change = (name, value) => {
+    //     setFormValue({...formValue, [name]: value})
+    // }
 
     const onChange = evt => {
         // debugger
@@ -17,16 +30,16 @@ function UserForm() {
         change(name, valueToUse)
     }
 
-    const submit = evt => {
-        evt.preventDefault()
-        const newUser = {
-            userName: formValue.userName.trim(),
-            userEmail: formValue.userEmail.trim(),
-            userPassword: formValue.userPassword.trim(),
-        }
-        setUser([...user, newUser])
-        setFormValue(initialFormValues)
-    }
+    // const submit = evt => {
+    //     evt.preventDefault()
+    //     const newUser = {
+    //         userName: formValue.userName.trim(),
+    //         userEmail: formValue.userEmail.trim(),
+    //         userPassword: formValue.userPassword.trim(),
+    //     }
+    //     setUser([...user, newUser])
+    //     setFormValue(initialFormValues)
+    // }
 
     
     
@@ -34,7 +47,8 @@ function UserForm() {
         <div className = 'container'>
             <h1>User Form</h1>
 
-            {
+
+            {/* {
                 user.map((user, idx) => {
                     return (
                         <div key={idx}>
@@ -44,23 +58,33 @@ function UserForm() {
                         </div>    
                     )
                 })
-            }
+            } */}
+            
+            
 
-            <form onSubmit = {submit}>
-                <input name='userName' placeholder='Name' type="text" value={formValue.userName} onChange={onChange} />
-                <input name='userEmail' placeholder='Email' type="text" value={formValue.userEmail} onChange={onChange} />
-                <input name='userPassword' placeholder='Password' type="text" value={formValue.userPassword} onChange={onChange} />
+            <div className = 'errors'>
+                <div>{errors.userName}</div>
+                <div>{errors.userEmail}</div>
+                <div>{errors.userPassword}</div>
+                <div>{errors.termsOfService}</div>
+            </div>
+
+            <form onSubmit = {onSubmit}>
+                <input name='userName' placeholder='Name' type="text" value={values.userName} onChange={onChange} />
+                <input name='userEmail' placeholder='Email' type="text" value={values.userEmail} onChange={onChange} />
+                <input name='userPassword' placeholder='Password' type="text" value={values.userPassword} onChange={onChange} />
                 <label> Accept Terms of Service
                     <input 
                         type = 'checkbox'
                         name = 'termsOfService'
-                        checked = {initialFormValues.termsOfService}
+                        checked = {values.termsOfService}
                         onChange = {onChange}
                     />
                 </label>
-                <button>Submit</button>
             </form>    
 
+            <button disabled ={disabled}>Submit</button>
+            
         </div>
     )
 
