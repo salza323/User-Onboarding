@@ -1,22 +1,20 @@
 import React, { useState } from 'react'
 
 
-const initialFormValues = {
-    userName: '',
-    userEmail: '', 
-    userPassword: '',
-    termsOfService: false,
-}
+
 
 function UserForm() {
-    const [user, setUser] = useState([])
-    const [formValue, setFormValue] = useState(initialFormValues)
+
+
+    const change = (name, value) => {
+        setFormValue({...formValue, [name]: value})
+    }
 
     const onChange = evt => {
         // debugger
         const { name, value, type, checked }  = evt.target
         const valueToUse = type === 'checkbox' ? checked : value
-        onChange(name, valueToUse)
+        change(name, valueToUse)
     }
 
     const submit = evt => {
