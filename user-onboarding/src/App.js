@@ -27,14 +27,12 @@ const initialDisabled = true
 function App() {
   const [user, setUser] = useState(iniitialUsers)
   const [formValue, setFormValue] = useState(initialFormValues)
-  const [formErrors, setFormErrors] = useState(initialFormErrors) // object
+  const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled) 
 
   const postNewUser = newUser => {
-    // console.log('postNewUser')
     axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
-        // console.log({res})
         setUser([...user, res.data])
         console.log(res.data)
       })
@@ -42,9 +40,7 @@ function App() {
         console.log(err)
       })
       .finally(() => {
-        // console.log('finally')
         setFormValue(initialFormValues)
-        // debugger
       })   
   }    
 
@@ -74,14 +70,12 @@ function App() {
   }
 
   const formSubmit = () => {
-    // console.log('formSubmit')
     const newUser = {
       userName: formValue.userName.trim(),
       userEmail: formValue.userEmail.trim(),
       userPassword: formValue.userPassword.trim(),
       termsOfService: formValue.termsOfService,
     }
-    // console.log(newUser)
     postNewUser(newUser)
   }
 
@@ -92,9 +86,6 @@ function App() {
     }, [formValue])
   })
   
-
-
-
 
   return (
     <div className="App">

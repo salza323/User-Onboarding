@@ -13,16 +13,10 @@ function UserForm( props ) {
         errors, 
     } = props
 
-
     const onSubmit = evt => {
-        // console.log('onSubmit')
         evt.preventDefault()
         submit()
     }
-
-    // const change = (name, value) => {
-    //     setFormValue({...formValue, [name]: value})
-    // }
 
     const onChange = evt => {
         // debugger
@@ -31,37 +25,10 @@ function UserForm( props ) {
         change(name, valueToUse)
     }
 
-    // const submit = evt => {
-    //     evt.preventDefault()
-    //     const newUser = {
-    //         userName: formValue.userName.trim(),
-    //         userEmail: formValue.userEmail.trim(),
-    //         userPassword: formValue.userPassword.trim(),
-    //     }
-    //     setUser([...user, newUser])
-    //     setFormValue(initialFormValues)
-    // }
-
-    
     
     return  (
         <div className = 'container'>
             <h1>User Form</h1>
-
-
-            {/* {
-                user.map((user, idx) => {
-                    return (
-                        <div key={idx}>
-                            {user.userName}
-                            {user.userEmail}
-                            {user.userPassword}
-                        </div>    
-                    )
-                })
-            } */}
-            
-            
 
             <div className = 'errors'>
                 <div>{errors.userName}</div>
@@ -84,7 +51,6 @@ function UserForm( props ) {
                 </label>
             <button disabled ={disabled}>Submit</button>
             </form>    
-
 
         </div>
     )
