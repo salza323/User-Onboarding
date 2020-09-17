@@ -19,13 +19,12 @@ function UserForm( props ) {
     }
 
     const onChange = evt => {
-        // debugger
         const { name, value, type, checked }  = evt.target
         const valueToUse = type === 'checkbox' ? checked : value
         change(name, valueToUse)
     }
 
-    
+
     return  (
         <div className = 'container'>
             <h1>User Form</h1>
