@@ -114,7 +114,7 @@ function App() {
               {user.userName}
               {user.userEmail}
               {user.userPassword}
-              {user.termsOfService}
+              {`${user.termsOfService}`}
               </div>
             )
             })       
